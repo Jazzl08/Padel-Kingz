@@ -1,0 +1,388 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Manrope', sans-serif;
+    background-size: cover;
+}
+
+.logo,
+.menu-logo {
+    position: absolute;
+    top: 2em;
+    left: 2em;
+}
+
+.logo a,
+.menu-logo a {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: 'Manrope';
+    font-size: 60px;
+    font-weight: lighter;
+}
+
+.logo a {
+    color: black;
+}
+
+.menu-logo a {
+    color: white;
+}
+
+.menu-toggle {
+    position: fixed;
+    top: 2em;
+    right: 2em;
+    width: 120px;
+    height: 60px;
+    border-radius: 8em;
+    transition: width 0.5s ease cubic-bezier(0.075, 0.82, 0.165, 1);
+    transform-origin: right;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.menu-toggle.opened {
+    width: 60px;
+}
+
+.menu-toggle:hover .menu-copy {
+    left: 20px;
+}
+
+.menu-toggle.opened .menu-copy {
+    opacity: 0;
+}
+
+.menu-toggle-icon {
+    position: absolute;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    clip-path: circle(10% at 50% 50%);
+    background-color: orange;
+    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    z-index: 10;
+    overflow: hidden;
+}
+
+.menu-toggle:hover .menu-toggle-icon {
+    clip-path: circle(25% at 50% 50%);
+}
+
+.menu-toggle.opened .menu-toggle-icon {
+    clip-path: circle(75% at 50% 50%);
+    transform: scale(1.25);
+}
+
+.hamburger {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: all 0.75s cubic-bezier(0.075, 0.82, 0.165, 1);
+    opacity: 0;
+}
+
+.menu-toggle:hover .hamburger,
+.menu-toggle.opened .hamburger {
+    opacity: 1;
+}
+
+.menu-bar {
+    position: absolute;
+    width: 20px;
+    height: 1px;
+    background-color: rgb(17, 17, 17);
+    transition-property: transform;
+    transition: all 250ms ease-out;
+    left: 50%;
+    top: 50%;
+    margin-left: -10px;
+    margin-top: -1px;
+}
+
+.menu-bar[data-position="top"] {
+    transform: translateY(-3px);
+}
+
+.menu-bar[data-position="bottom"] {
+    transform: translateY(3px);
+}
+
+.menu-toggle.opened .menu-bar[data-position="top"] {
+    transform: translateY(0) rotate(45deg);
+}
+
+.menu-toggle.opened .menu-bar[data-position="bottom"] {
+    transform: translateY(0) rotate(-45deg);
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    background-color: black;
+    pointer-events: none;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+}
+
+.col {
+    flex: 1;
+}
+
+.col-2 {
+    flex: 2;
+}
+
+.col {
+    position: relative;
+    height: 100%;
+    padding: 10em 2em 2em 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+padding-right: 450px;
+}
+
+.link1 {
+    position: relative;
+    transform: translateY(30px);
+}
+
+.link1 a {
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 48px;
+        color: rgba(150, 150, 150, 0.877);
+    letter-spacing: -1.5px;
+    line-height: 105%;
+}
+
+.link1 a:hover {
+    color:white;
+    transition: ease-in-out 0.5s;
+}
+
+.link1 a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: width 0.5s;
+}
+
+
+.link1 a:hover::after {
+    width: 75%;
+}
+
+.link {
+    position: relative;
+    transform: translateY(30px);
+    opacity: 0;
+}
+
+.link a {
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 48px;
+        color: rgba(150, 150, 150, 0.877);
+    letter-spacing: -1.5px;
+    line-height: 105%;
+}
+
+.link a:hover {
+    color:white;
+    transition: ease-in-out 0.5s;
+}
+
+.link a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: width 0.5s;
+}
+
+
+.link a:hover::after {
+    width: 100%;
+}
+
+.video-wrapper {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background-color: #1d1d1d;
+    overflow: hidden;
+    padding: 2em;
+    clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+}
+
+.video-wrapper video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.socials {
+    width: 50%;
+    display: flex;
+    gap: 2em;
+}
+
+.socials .sub-col {
+    flex: 1;
+}
+
+.socials .sub-col p {
+    position: relative;
+    color: white;
+    transform: translateY(30px);
+    opacity: 0;
+    text-transform: uppercase;
+    font-family: "Manrope";
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.sub-col p:first-child {
+    color: rgba(150, 150, 150, 0.877);
+}
+
+.sub-col p:first-child:hover {
+    color: white;
+    transition: ease-in-out 0.5s;
+}
+
+.sub-col p:nth-child(2) {
+    color: rgba(150, 150, 150, 0.877);
+}
+
+.sub-col p:nth-child(2):hover {
+    color: white;
+    transition: ease-in-out 0.5s;
+}
+
+
+.sub-col p a {
+    text-decoration: none;
+    color: rgba(150, 150, 150, 0.877);
+    letter-spacing: 0;
+    line-height: 105%;
+}
+
+.sub-col p a:hover {
+    color: white;
+    transition: ease-in-out 0.5s;
+}
+
+.sub-col p a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background-color: white;
+    transition: width 0.5s;
+}
+
+.sub-col .insta.a:hover::after {
+    width: 25%;
+}
+
+.sub-col .tikok.a:hover::after {
+    width: 15%;
+}
+
+.sub-col .facebook.a:hover::after {
+    width: 23%;
+}
+
+
+.header h1 {
+    color: #fff;
+    text-transform: uppercase;
+    font-family: "Manrope";
+    font-size: 250px;
+    font-weight: lighter;
+    line-height: 100%;
+    height: 200px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    bottom: 1em;
+    left: 4.65em;
+    z-index: 1;
+}
+
+.header h1 span {
+    position: relative;
+    display: inline-block;
+    transform: scale(0.75) translateY(250px) rotateY(90deg);
+    transform-origin: bottom;
+}
+
+@media (max-width: 900px) {
+    .menu-logo a {
+        font-size: 36px;
+    }
+
+    .col-1 {
+        flex: 2;
+        align-items: flex-start;
+    }
+
+    .link a, .link1 a {
+        font-size: 30px;
+    }
+
+    .video-wrapper {
+        padding: 0.4em;
+    }
+
+    .socials {
+        width: 50%;
+        flex-direction: column;
+        gap: 8em;
+    }
+
+    .header h1 {
+        font-size: 60px;
+        height: 30px;
+    }
+}

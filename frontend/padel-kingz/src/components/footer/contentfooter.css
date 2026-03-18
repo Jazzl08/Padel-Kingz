@@ -1,0 +1,45 @@
+.content {
+  background-color: #000000;
+  padding: 2rem 3rem;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+}
+
+.content__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  color: white;
+}
+
+.content__title {
+  font-size: 14px;
+  text-transform: uppercase;
+  line-height: 0.8;
+  margin-top: 2.5rem;
+  color: white;
+
+}
+
+.nav {
+  display: flex;
+  flex-shrink: 0;
+  gap: 5rem;
+}
+
+.nav__group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;;
+}
+
+.nav__heading {
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  color: #ffffff;
+    text-decoration: none;
+}

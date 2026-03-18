@@ -1,0 +1,17 @@
+.footer {
+  position: relative;
+  height: 800px;
+  clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0 100%);
+}
+
+.footer__scroll-container {
+  position: relative;
+  height: calc(100vh + 800px);
+  top: -100vh;
+}
+
+.footer__sticky {
+  height: 800px;
+  position: sticky;
+  top: calc(100vh - 800px);
+}

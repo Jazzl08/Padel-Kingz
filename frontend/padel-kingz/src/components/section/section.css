@@ -1,0 +1,13 @@
+.section {
+  height: 100vh;
+  display: flex;
+  font-size: 2vw;
+  align-items: center;
+  justify-content: center;
+}
+
+.section__title {
+  max-width: 45%;
+  text-align: center;
+  line-height: 1;
+}

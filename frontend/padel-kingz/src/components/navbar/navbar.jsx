@@ -44,12 +44,12 @@ export const Navbar = () => {
                     isAnimating = true;
 
                     gsap.to(menu, {
-  duration: 1.5,
-  clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-  ease: "hop",
-  onStart: () => { menu.style.pointerEvents = 'all'; },
-  onComplete: () => { isAnimating = false; }
-});
+                        duration: 1.5,
+                        clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+                        ease: "hop",
+                        onStart: () => { menu.style.pointerEvents = 'all'; },
+                        onComplete: () => { isAnimating = false; }
+                    });
 
                     gsap.to(links, {
                         y: 0,
@@ -132,10 +132,10 @@ export const Navbar = () => {
                             isAnimating = false;
                         },
                     });
-                }          
-            });            
-        }                  
-    }, []);                
+                }
+            });
+        }
+    }, []);
 
     return (
         <div>
@@ -162,11 +162,11 @@ export const Navbar = () => {
                         <div className="link"><Link href="#">Contact</Link></div>
                     </div>
 
-<div className="video-wrapper">
-  <video autoPlay loop muted>
-    <source src="/padel.mp4" type="video/mp4" />
-  </video>
-</div>
+                    <div className="video-wrapper">
+                        <video autoPlay loop muted>
+                            <source src="/padel.mp4" type="video/mp4" />
+                        </video>
+                    </div>
                 </div>
                 <div className="col col-2">
                     <div className="socials">

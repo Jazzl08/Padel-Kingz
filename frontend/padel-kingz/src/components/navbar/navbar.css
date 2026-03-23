@@ -27,7 +27,7 @@ body {
     text-decoration: none;
     text-transform: uppercase;
     font-family: 'Manrope';
-    font-size: 60px;
+    font-size: clamp(28px, 6vw, 60px);
     font-weight: lighter;
 }
 
@@ -43,8 +43,8 @@ body {
     position: fixed;
     top: 2em;
     right: 2em;
-    width: 120px;
-    height: 60px;
+    width: clamp(80px, 20vw, 120px);
+    height: clamp(45px, 10vw, 60px);
     border-radius: 8em;
     transition: width 0.5s ease cubic-bezier(0.075, 0.82, 0.165, 1);
     transform-origin: right;
@@ -67,8 +67,8 @@ body {
 .menu-toggle-icon {
     position: absolute;
     right: 0;
-    width: 60px;
-    height: 60px;
+    width: clamp(45px, 10vw, 60px);
+    height: clamp(45px, 10vw, 60px);
     border-radius: 100%;
     clip-path: circle(10% at 50% 50%);
     background-color: orange;
@@ -91,8 +91,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 20px;
-    height: 20px;
+    width: clamp(14px, 3vw, 20px);
+    height: clamp(14px, 3vw, 20px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -108,14 +108,14 @@ body {
 
 .menu-bar {
     position: absolute;
-    width: 20px;
+    width: clamp(14px, 3vw, 20px);
     height: 1px;
     background-color: rgb(17, 17, 17);
     transition-property: transform;
     transition: all 250ms ease-out;
     left: 50%;
     top: 50%;
-    margin-left: -10px;
+    margin-left: clamp(-10px, -1.5vw, -10px);
     margin-top: -1px;
 }
 
@@ -160,7 +160,7 @@ body {
 .col {
     position: relative;
     height: 100%;
-    padding: 10em 2em 2em 2em;
+    padding: clamp(1.5em, 8vw, 10em) clamp(1em, 4vw, 2em) clamp(1em, 4vw, 2em) clamp(1em, 4vw, 2em);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -170,7 +170,7 @@ body {
 .links {
     display: flex;
     flex-direction: column;
-padding-right: 450px;
+    padding-right: clamp(0px, 25vw, 450px);
 }
 
 .link1 {
@@ -181,10 +181,10 @@ padding-right: 450px;
 .link1 a {
     text-decoration: none;
     font-weight: 300;
-    font-size: 48px;
-        color: rgba(150, 150, 150, 0.877);
+    font-size: clamp(24px, 5vw, 48px);
+    color: rgba(150, 150, 150, 0.877);
     letter-spacing: -1.5px;
-    line-height: 105%;
+    line-height: 1.2;
 }
 
 .link1 a:hover {
@@ -217,10 +217,10 @@ padding-right: 450px;
 .link a {
     text-decoration: none;
     font-weight: 300;
-    font-size: 48px;
-        color: rgba(150, 150, 150, 0.877);
+    font-size: clamp(20px, 4.5vw, 48px);
+    color: rgba(150, 150, 150, 0.877);
     letter-spacing: -1.5px;
-    line-height: 105%;
+    line-height: 1.2;
 }
 
 .link a:hover {
@@ -249,7 +249,7 @@ padding-right: 450px;
     aspect-ratio: 16/9;
     background-color: #1d1d1d;
     overflow: hidden;
-    padding: 2em;
+    padding: clamp(0.5em, 3vw, 2em);
     clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
 }
 
@@ -260,13 +260,16 @@ padding-right: 450px;
 }
 
 .socials {
-    width: 50%;
+    width: 100%;
     display: flex;
-    gap: 2em;
+    gap: clamp(1rem, 3vw, 2em);
+    flex-wrap: wrap;
+    max-width: 100%;
 }
 
 .socials .sub-col {
-    flex: 1;
+    flex: 0 1 auto;
+    min-width: fit-content;
 }
 
 .socials .sub-col p {
@@ -276,7 +279,7 @@ padding-right: 450px;
     opacity: 0;
     text-transform: uppercase;
     font-family: "Manrope";
-    font-size: 12px;
+    font-size: clamp(10px, 1.8vw, 12px);
     font-weight: 400;
 }
 
@@ -339,16 +342,17 @@ padding-right: 450px;
     color: #fff;
     text-transform: uppercase;
     font-family: "Manrope";
-    font-size: 250px;
+    font-size: clamp(36px, 12vw, 250px);
     font-weight: lighter;
-    line-height: 100%;
-    height: 200px;
+    line-height: 1;
+    height: auto;
     margin: 0;
     padding: 0;
     position: absolute;
     bottom: 1em;
     left: 4.65em;
     z-index: 1;
+    max-width: 100%;
 }
 
 .header h1 span {

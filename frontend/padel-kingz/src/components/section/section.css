@@ -1,13 +1,16 @@
 .section {
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   display: flex;
-  font-size: 2vw;
+  font-size: clamp(16px, 2.5vw, 2.5rem);
   align-items: center;
   justify-content: center;
+  padding: clamp(1rem, 4vw, 2rem);
 }
 
 .section__title {
-  max-width: 45%;
+  max-width: clamp(80%, 90%, 45vw);
   text-align: center;
-  line-height: 1;
+  line-height: 1.2;
+  word-wrap: break-word;
 }

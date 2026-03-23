@@ -176,7 +176,7 @@ export const Navbar = () => {
                         </div>
                         <div className="sub-col">
                             <p><Link className='insta a' href="#" target="_blank" rel="noopener noreferrer">Instagram</Link></p>
-                            <p><Link className='tikok a' href="#" target="_blank" rel="noopener noreferrer">Tiktok</Link></p>
+                            <p><Link className='tiktok a' href="#" target="_blank" rel="noopener noreferrer">Tiktok</Link></p>
                             <p><Link className='facebook a' href="#" target="_blank" rel="noopener noreferrer">Facebook</Link></p>
                         </div>
                     </div>

@@ -1,1 +1,1 @@
-// Pagina voor ticketinformatie, aanvragen of ondersteuning
+// Page for ticket information, requests or support

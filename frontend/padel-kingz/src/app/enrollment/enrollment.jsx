@@ -1,0 +1,1 @@
+// Page where users can register for the tournament

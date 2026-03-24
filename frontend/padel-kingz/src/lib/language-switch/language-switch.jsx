@@ -1,1 +1,1 @@
-// Pagina voor het wisselen van taal in de applicatie
+// Page for switching the language in the application

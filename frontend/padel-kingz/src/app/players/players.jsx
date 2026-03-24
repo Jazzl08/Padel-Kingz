@@ -1,1 +1,1 @@
-// Pagina met overzicht van alle spelers
+// Page with an overview of all players

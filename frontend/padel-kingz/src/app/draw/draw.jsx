@@ -1,0 +1,1 @@
+// Page with the draw and player allocation

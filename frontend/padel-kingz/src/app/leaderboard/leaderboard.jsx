@@ -1,1 +1,1 @@
-// Pagina met de ranglijst van spelers
+// Page with the leaderboard of players

@@ -1,0 +1,49 @@
+import jwt from "jsonwebtoken";
+import pool from "../config/db.js";
+
+export const protectroute = async (req, res, next) => {
+    try {
+        const token = req.cookies.token;
+
+        if (!token) {
+            return res.status(401).json({ message: "Not authorized, no token" });
+        }
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+        const user = await pool.query("SELECT id, name, email, role FROM users WHERE id = $1", [decoded.id]);
+
+        if (user.rows.length === 0) {
+            return res.status(401).json({ message: "Not authorized, user not found" });
+        }
+        req.user = user.rows[0];
+        next();
+
+    } catch (error) {
+        return res.status(401).json({ message: "Not authorized, token failed" });
+    }
+}
+
+export const checkUser = async (req, res, next) => {
+    try {
+        const token = req.cookies.token;
+
+        if (!token) {
+            req.user = null;
+            return next();
+        }
+
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const user = await pool.query("SELECT id, name, email FROM users WHERE id = $1", [decoded.id]);
+
+        if (user.rows.length > 0) {
+            req.user = user.rows[0];
+        } else {
+            req.user = null;
+        }
+        next();
+
+    } catch (error) {
+        req.user = null;
+        next();
+    }
+}

@@ -1,1 +1,0 @@
-// Page for login and registration of players and administrators

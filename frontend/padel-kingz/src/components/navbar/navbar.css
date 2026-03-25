@@ -15,20 +15,28 @@ body {
     background-color: white;
 }
 
+.navbar-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
 .logo,
 .menu-logo {
-    position: absolute;
+    position: fixed;
     top: 2em;
     left: 2em;
+      z-index: 9998;
 }
 
 .logo a,
 .menu-logo a {
     text-decoration: none;
     text-transform: uppercase;
-    font-family: 'Manrope';
-    font-size: clamp(28px, 6vw, 60px);
-    font-weight: lighter;
+    font-family: 'Manrope', sans-serif;
+    font-size: 60px;
+    font-weight: lighter;    
 }
 
 .logo a {
@@ -36,20 +44,22 @@ body {
 }
 
 .menu-logo a {
-    color: white;
+    color: white;    
+z-index: 9999;
+
 }
 
 .menu-toggle {
     position: fixed;
     top: 2em;
     right: 2em;
-    width: clamp(80px, 20vw, 120px);
-    height: clamp(45px, 10vw, 60px);
+    width: 120px;
+    height: 60px;
     border-radius: 8em;
     transition: width 0.5s ease cubic-bezier(0.075, 0.82, 0.165, 1);
     transform-origin: right;
     cursor: pointer;
-    z-index: 2;
+    z-index: 9999;
 }
 
 .menu-toggle.opened {
@@ -67,8 +77,8 @@ body {
 .menu-toggle-icon {
     position: absolute;
     right: 0;
-    width: clamp(45px, 10vw, 60px);
-    height: clamp(45px, 10vw, 60px);
+    width: 60px;
+    height: 60px;
     border-radius: 100%;
     clip-path: circle(10% at 50% 50%);
     background-color: orange;
@@ -91,8 +101,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: clamp(14px, 3vw, 20px);
-    height: clamp(14px, 3vw, 20px);
+    width: 20px;
+    height: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -108,14 +118,14 @@ body {
 
 .menu-bar {
     position: absolute;
-    width: clamp(14px, 3vw, 20px);
+    width: 20px;
     height: 1px;
     background-color: rgb(17, 17, 17);
     transition-property: transform;
     transition: all 250ms ease-out;
     left: 50%;
     top: 50%;
-    margin-left: clamp(-10px, -1.5vw, -10px);
+    margin-left: -10px;
     margin-top: -1px;
 }
 
@@ -147,6 +157,7 @@ body {
     transform-style: preserve-3d;
     perspective: 1000px;
     clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+    z-index: 9998;
 }
 
 .col {
@@ -160,7 +171,7 @@ body {
 .col {
     position: relative;
     height: 100%;
-    padding: clamp(1.5em, 8vw, 10em) clamp(1em, 4vw, 2em) clamp(1em, 4vw, 2em) clamp(1em, 4vw, 2em);
+    padding: 10em 2em 2em 2em;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -170,7 +181,7 @@ body {
 .links {
     display: flex;
     flex-direction: column;
-    padding-right: clamp(0px, 25vw, 525px);
+    padding-right: 450px;
 }
 
 .link1 {
@@ -181,14 +192,14 @@ body {
 .link1 a {
     text-decoration: none;
     font-weight: 300;
-    font-size: clamp(24px, 5vw, 48px);
+    font-size: 48px;
     color: rgba(150, 150, 150, 0.877);
     letter-spacing: -1.5px;
-    line-height: 1.2;
+    line-height: 105%;
 }
 
 .link1 a:hover {
-    color:white;
+    color: white;
     transition: ease-in-out 0.5s;
 }
 
@@ -217,14 +228,14 @@ body {
 .link a {
     text-decoration: none;
     font-weight: 300;
-    font-size: clamp(20px, 4.5vw, 48px);
+    font-size: 48px;
     color: rgba(150, 150, 150, 0.877);
     letter-spacing: -1.5px;
-    line-height: 1.2;
+    line-height: 105%;
 }
 
 .link a:hover {
-    color:white;
+    color: white;
     transition: ease-in-out 0.5s;
 }
 
@@ -249,7 +260,7 @@ body {
     aspect-ratio: 16/9;
     background-color: #1d1d1d;
     overflow: hidden;
-    padding: clamp(0.5em, 3vw, 2em);
+    padding: 2em;
     clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
 }
 
@@ -260,15 +271,13 @@ body {
 }
 
 .socials {
+    width: 50%;
     display: flex;
-    gap: clamp(1rem, 3vw, 2em);
-    flex-wrap: wrap;
-    max-width: 100%;
+    gap: 2em;
 }
 
 .socials .sub-col {
-    flex: 0 1 auto;
-    min-width: fit-content;
+    flex: 1;
 }
 
 .socials .sub-col p {
@@ -278,7 +287,7 @@ body {
     opacity: 0;
     text-transform: uppercase;
     font-family: "Manrope";
-    font-size: clamp(10px, 1.8vw, 12px);
+    font-size: 12px;
     font-weight: 400;
 }
 
@@ -325,15 +334,15 @@ body {
 }
 
 .sub-col .insta.a:hover::after {
-    width: 100%;
+    width: 25%;
 }
 
-.sub-col .tiktok.a:hover::after {
-    width: 60%;
+.sub-col .tikok.a:hover::after {
+    width: 15%;
 }
 
 .sub-col .facebook.a:hover::after {
-    width: 90%;
+    width: 23%;
 }
 
 
@@ -341,17 +350,16 @@ body {
     color: #fff;
     text-transform: uppercase;
     font-family: "Manrope";
-    font-size: clamp(36px, 12vw, 250px);
+    font-size: 250px;
     font-weight: lighter;
-    line-height: 1;
-    height: auto;
+    line-height: 100%;
+    height: 200px;
     margin: 0;
     padding: 0;
     position: absolute;
     bottom: 1em;
     left: 4.65em;
     z-index: 1;
-    max-width: 100%;
 }
 
 .header h1 span {
@@ -359,6 +367,31 @@ body {
     display: inline-block;
     transform: scale(0.75) translateY(250px) rotateY(90deg);
     transform-origin: bottom;
+}
+
+.account-link {
+    position: fixed;
+    top: 2em;
+    right: 9em;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    height: 60px;
+}
+
+.account-link a {
+    text-decoration: none;
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: black;
+    letter-spacing: 1px;
+    transition: opacity 0.3s ease;
+}
+
+.account-link a:hover {
+    opacity: 0.5;
 }
 
 @media (max-width: 900px) {
@@ -371,7 +404,8 @@ body {
         align-items: flex-start;
     }
 
-    .link a, .link1 a {
+    .link a,
+    .link1 a {
         font-size: 30px;
     }
 

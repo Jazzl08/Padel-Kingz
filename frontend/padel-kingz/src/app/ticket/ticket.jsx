@@ -1,1 +1,0 @@
-// Page for ticket information, requests or support

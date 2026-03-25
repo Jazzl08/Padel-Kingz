@@ -48,7 +48,10 @@ export const Navbar = () => {
                         clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
                         ease: "hop",
                         onStart: () => { menu.style.pointerEvents = 'all'; },
-                        onComplete: () => { isAnimating = false; }
+                        onComplete: () => {
+                            isAnimating = false;
+
+                        }
                     });
 
                     gsap.to(links, {
@@ -138,8 +141,12 @@ export const Navbar = () => {
     }, []);
 
     return (
-        <div>
+        <div className="navbar-wrapper">
             <div className="logo"><Link href="#">Padel Kingz</Link></div>
+
+            <div className="account-link">
+                <Link href="/login">Account</Link>
+            </div>
 
             <div className="menu-toggle closed">
                 <div className="menu-toggle-icon">
@@ -152,11 +159,12 @@ export const Navbar = () => {
             </div>
 
             <div className="menu">
+
                 <div className="col col-1">
-                    <div className="menu-logo"><Link href="#">Padel Kingz</Link></div>
+                    <div className="menu-logo"><Link href="/">Padel Kingz</Link></div>
 
                     <div className="links">
-                        <div className="link1"><Link href="#">Home</Link></div>
+                        <div className="link1"><Link href="/">Home</Link></div>
                         <div className="link1"><Link href="#">About</Link></div>
                         <div className="link"><Link href="#">Services</Link></div>
                         <div className="link"><Link href="#">Contact</Link></div>
@@ -176,7 +184,7 @@ export const Navbar = () => {
                         </div>
                         <div className="sub-col">
                             <p><Link className='insta a' href="#" target="_blank" rel="noopener noreferrer">Instagram</Link></p>
-                            <p><Link className='tiktok a' href="#" target="_blank" rel="noopener noreferrer">Tiktok</Link></p>
+                            <p><Link className='tikok a' href="#" target="_blank" rel="noopener noreferrer">Tiktok</Link></p>
                             <p><Link className='facebook a' href="#" target="_blank" rel="noopener noreferrer">Facebook</Link></p>
                         </div>
                     </div>

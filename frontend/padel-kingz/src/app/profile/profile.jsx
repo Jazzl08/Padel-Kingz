@@ -1,1 +1,0 @@
-// Page with personal information, matches, results and playing level of the player

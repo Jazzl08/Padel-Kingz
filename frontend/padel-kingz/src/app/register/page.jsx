@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import './Register.css'
+import './register.css'
 
 export default function Register() {
     const [form, setForm] = useState({

@@ -184,41 +184,6 @@ z-index: 9999;
     padding-right: 450px;
 }
 
-.link1 {
-    position: relative;
-    transform: translateY(30px);
-}
-
-.link1 a {
-    text-decoration: none;
-    font-weight: 300;
-    font-size: 48px;
-    color: rgba(150, 150, 150, 0.877);
-    letter-spacing: -1.5px;
-    line-height: 105%;
-}
-
-.link1 a:hover {
-    color: white;
-    transition: ease-in-out 0.5s;
-}
-
-.link1 a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0;
-    height: 2px;
-    background-color: white;
-    transition: width 0.5s;
-}
-
-
-.link1 a:hover::after {
-    width: 75%;
-}
-
 .link {
     position: relative;
     transform: translateY(30px);
@@ -232,6 +197,18 @@ z-index: 9999;
     color: rgba(150, 150, 150, 0.877);
     letter-spacing: -1.5px;
     line-height: 105%;
+    display: inline-block;
+    padding: 0 0.5em;
+}
+
+.link a::after {
+    background-color: #fff;
+    content: '';
+    display: block;
+    height: .1em;
+    margin-top: .2em;
+    transition: width 0.5s;
+    width: 0;
 }
 
 .link a:hover {
@@ -239,20 +216,8 @@ z-index: 9999;
     transition: ease-in-out 0.5s;
 }
 
-.link a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0;
-    height: 2px;
-    background-color: white;
-    transition: width 0.5s;
-}
-
-
 .link a:hover::after {
-    width: 100%;
+    width: calc(100%);
 }
 
 .video-wrapper {
@@ -315,6 +280,18 @@ z-index: 9999;
     color: rgba(150, 150, 150, 0.877);
     letter-spacing: 0;
     line-height: 105%;
+    display: inline-block;
+    padding: 0 0.5em;
+}
+
+.sub-col p a::after {
+    background-color: #fff;
+    content: '';
+    display: block;
+    height: .1em;
+    margin-top: .2em;
+    transition: width 0.5s;
+    width: 0;
 }
 
 .sub-col p a:hover {
@@ -322,27 +299,8 @@ z-index: 9999;
     transition: ease-in-out 0.5s;
 }
 
-.sub-col p a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0;
-    height: 1px;
-    background-color: white;
-    transition: width 0.5s;
-}
-
-.sub-col .insta.a:hover::after {
-    width: 25%;
-}
-
-.sub-col .tikok.a:hover::after {
-    width: 15%;
-}
-
-.sub-col .facebook.a:hover::after {
-    width: 23%;
+.sub-col p a:hover::after {
+    width: calc(100%);
 }
 
 
@@ -404,8 +362,7 @@ z-index: 9999;
         align-items: flex-start;
     }
 
-    .link a,
-    .link1 a {
+    .link a {
         font-size: 30px;
     }
 

@@ -18,7 +18,7 @@ export const Navbar = () => {
 
         const menuToggle = document.querySelector('.menu-toggle');
         const menu = document.querySelector('.menu');
-        const links = document.querySelectorAll('.link1, .link');
+        const links = document.querySelectorAll('.link');
         const socialLinks = document.querySelectorAll('.socials p');
         let isAnimating = false;
 
@@ -164,8 +164,8 @@ export const Navbar = () => {
                     <div className="menu-logo"><Link href="/">Padel Kingz</Link></div>
 
                     <div className="links">
-                        <div className="link1"><Link href="/">Home</Link></div>
-                        <div className="link1"><Link href="#">About</Link></div>
+                        <div className="link"><Link href="/">Home</Link></div>
+                        <div className="link"><Link href="#">About</Link></div>
                         <div className="link"><Link href="#">Services</Link></div>
                         <div className="link"><Link href="#">Contact</Link></div>
                     </div>

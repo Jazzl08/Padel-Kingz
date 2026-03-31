@@ -22,6 +22,17 @@ export const Navbar = () => {
         const socialLinks = document.querySelectorAll('.socials p');
         let isAnimating = false;
 
+        // Home button in menu
+        const homeLink = document.querySelector('.link:first-child');
+        const handleHomeClick = () => {
+            if (menuToggle && menuToggle.classList.contains('opened')) {
+                menuToggle.click();
+            }
+        };
+        if (homeLink) {
+            homeLink.addEventListener('click', handleHomeClick);
+        }
+
         const splitTextIntoSpans = (selector) => {
             let elements = document.querySelectorAll(selector);
             elements.forEach(element => {
@@ -35,7 +46,7 @@ export const Navbar = () => {
         splitTextIntoSpans(".header h1");
 
         if (menuToggle) {
-            menuToggle.addEventListener('click', () => {
+            const handleMenuToggle = () => {
                 if (isAnimating) return;
                 if (menuToggle.classList.contains('closed')) {
                     menuToggle.classList.remove('closed');
@@ -136,7 +147,15 @@ export const Navbar = () => {
                         },
                     });
                 }
-            });
+            };
+            menuToggle.addEventListener('click', handleMenuToggle);
+            
+            return () => {
+                menuToggle.removeEventListener('click', handleMenuToggle);
+                if (homeLink) {
+                    homeLink.removeEventListener('click', handleHomeClick);
+                }
+            };
         }
     }, []);
 

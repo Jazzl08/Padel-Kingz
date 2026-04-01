@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.leaderboard-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2em;
+    background-color: #0a0a0a;
+    font-family: 'Manrope', sans-serif;
+}
+
+.leaderboard-card {
+    width: 100%;
+    max-width: 900px;
+    padding: 3em;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+}
+
+.leaderboard-title {
+    font-size: 36px;
+    font-weight: 300;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    margin-bottom: 0.3em;
+}
+
+.leaderboard-desc {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 2.5em;
+    font-weight: 400;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    margin: 2em 0;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 12px;
+}
+
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.025);
+}
+
+.leaderboard-table thead {
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.leaderboard-table thead th {
+    padding: 1.2em 1.4em;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.leaderboard-table tbody tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: background 0.3s ease;
+}
+
+.leaderboard-table tbody tr:hover {
+    background: rgba(255, 155, 0, 0.08);
+}
+
+.leaderboard-table tbody td {
+    padding: 1em 1.4em;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.player-cell {
+    font-weight: 500;
+    color: white;
+}
+
+.stat-cell {
+    font-weight: 600;
+}
+
+.stat-cell.wins {
+    color: green;
+}
+
+.stat-cell.losses {
+    color: red;
+}
+
+.stat-cell.points {
+    color: #ff9900;
+}
+
+.leaderboard-footer {
+    display: flex;
+    gap: 1em;
+    margin-top: 2em;
+    justify-content: center;
+}
+
+.leaderboard-footer a {
+    text-decoration: none;
+}
+
+/* responsive design */
+
+@media (max-width: 768px) {
+    .leaderboard-card {
+        padding: 2em;
+    }
+
+    .leaderboard-title {
+        font-size: 28px;
+    }
+
+    .leaderboard-table thead th,
+    .leaderboard-table tbody td {
+        padding: 0.8em 0.6em;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 600px) {
+    .leaderboard-container {
+        padding: 1em;
+    }
+
+    .leaderboard-card {
+        padding: 1.5em;
+    }
+
+    .leaderboard-title {
+        font-size: 24px;
+    }
+
+    .leaderboard-desc {
+        font-size: 12px;
+        margin-bottom: 1.5em;
+    }
+
+    .leaderboard-table thead th,
+    .leaderboard-table tbody td {
+        padding: 0.6em 0.4em;
+        font-size: 11px;
+    }
+
+    .btn-back {
+        font-size: 12px;
+        padding: 0.7em 1.2em;
+    }
+}

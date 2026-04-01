@@ -1,1 +1,0 @@
-// Page with the leaderboard of players

@@ -164,6 +164,7 @@ export const Navbar = () => {
             <div className="logo"><Link href="#">Padel Kingz</Link></div>
 
             <div className="account-link">
+                <Link href="/leaderboard">Leaderboard</Link>
                 <Link href="/login">Account</Link>
             </div>
 

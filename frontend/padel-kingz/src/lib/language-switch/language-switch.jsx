@@ -1,1 +1,0 @@
-// Page for switching the language in the application

@@ -1,1 +1,0 @@
-// Page with an overview of all players

@@ -335,6 +335,7 @@ z-index: 9999;
     display: flex;
     align-items: center;
     height: 60px;
+    gap: 1em;
 }
 
 .account-link a {

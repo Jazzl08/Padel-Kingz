@@ -1,153 +1,196 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:ital,wght@0,300;0,400;0,600;0,800;1,400&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Manrope', sans-serif;
 }
 
-
-.register-form-side {
+.register-container {
+    display: flex;
     min-height: 100vh;
+    background-color: #FFA54F; /* Licht oranje achtergrond */
+}
+
+/* --- LINKERKANT --- */
+.register-left {
+    flex: 1;
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 2em;
-    background-color: #0a0a0a;
+    padding: 10%;
+}
+
+.left-content {
+    max-width: 500px;
+}
+
+.register-subtitle {
+    font-size: 1.5rem;
+    font-weight: 400;
+    font-style: italic;
+    color: #FFF3E3;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.register-hero-title {
+    font-size: 5.5rem;
+    font-weight: 800;
+    color: #FFF3E3; 
+    text-transform: uppercase;
+    line-height: 0.9;
+    letter-spacing: -2px;
+    margin-bottom: 1.5rem;
+}
+
+.register-hero-desc {
+    font-size: 0.95rem;
+    color: #FFF3E3;
+    line-height: 1.4;
+    font-weight: 300;
+}
+
+/* --- RECHTERKANT --- */
+.register-right {
+    flex: 1;
+    display: flex;
+    padding: 2rem;
 }
 
 .register-card {
+    background-color: #F8EFE3; 
     width: 100%;
-    max-width: 700px;
-    padding: 3em;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 24px;
-}
-
-.register-title {
-    font-size: 36px;
-    font-weight: 300;
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: -1px;
-    margin-bottom: 0.3em;
-}
-
-.register-desc {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.4);
-    margin-bottom: 2.5em;
-    font-weight: 400;
-}
-
-.error-message {
-    background: rgba(255, 80, 80, 0.1);
-    border: 1px solid rgba(255, 80, 80, 0.3);
-    color: #ff6b6b;
-    padding: 0.75em 1.2em;
-    border-radius: 50px;
-    font-size: 13px;
-    margin-bottom: 1.5em;
-}
-
-form {
     display: flex;
     flex-direction: column;
-    gap: 1.2em;
+    padding: 10%;
 }
 
-.form-row {
+.card-content {
+    flex-grow: 1;
     display: flex;
-    gap: 1em;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #000000a6; 
+    letter-spacing: -1px;
+    margin-bottom: 3rem;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 450px;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
-    gap: 0.5em;
-    flex: 1;
+    gap: 0.5rem;
 }
 
 .form-label {
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: rgb(0 0 0 / 40%);
+
 }
 
 .form-input {
     background: transparent;
-    border: 1px solid rgba(150, 150, 150, 0.3);
-    border-radius: 50px;
-    padding: 0.9em 1.4em;
-    font-size: 14px;
-    font-family: 'Manrope', sans-serif;
-    color: white;
+    border: 1px solid #D1C9BE;
+    padding: 0.8rem;
+    font-size: 1rem;
+    color: #2D3325;
     outline: none;
     transition: border-color 0.3s ease;
-    width: 100%;
-}
-
-.form-input::placeholder {
-    color: rgba(255, 255, 255, 0.2);
 }
 
 .form-input:focus {
-    border-color: orange;
+    border-color: #FFA54F;
 }
 
-.btn-submit {
-    width: 100%;
-    padding: 0.9em 1.4em;
-    background: orange;
-    color: black;
+.btn-submit1 {
+    background-color: #C3C775; /* Olijfgele knop */
+    color: #2D3325;
     border: none;
-    border-radius: 50px;
-    font-size: 14px;
-    font-weight: 700;
-    font-family: 'Manrope', sans-serif;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.85rem;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
-    margin-top: 0.4em;
-}
-
-.btn-submit:hover {
-    background: #ff9900;
-    transform: translateY(-1px);
-}
-
-.register-footer {
-    margin-top: 1.8em;
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.3);
-    text-align: center;
-}
-
-.register-footer a {
-    color: orange;
-    text-decoration: none;
-    font-weight: 600;
+    width: max-content;
+    margin-top: 1rem;
     transition: opacity 0.3s;
 }
 
-.register-footer a:hover {
-    opacity: 0.7;
+.btn-submit1:hover {
+    opacity: 0.8;
 }
 
-@media (max-width: 600px) {
-    .form-row {
+.error-message {
+    background: #ffdbdb;
+    border: 1px solid #ff4a4a;
+    color: #d10000;
+    padding: 0.8rem;
+    font-size: 0.9rem;
+}
+
+/* --- FOOTER IN KAART --- */
+.register-footer {
+    margin-top: 3rem;
+}
+
+.footer-line {
+    height: 1px;
+    background-color: #2D3325;
+    width: 100%;
+    margin-bottom: 1rem;
+    opacity: 0.3;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #2D3325;
+}
+
+.signup-link {
+    color: #2D3325;
+    text-decoration: none;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.signup-link:hover {
+    text-decoration: underline;
+}
+
+/* --- RESPONSIVE / MOBIEL --- */
+@media (max-width: 900px) {
+    .register-container {
         flex-direction: column;
     }
 
-    .register-card {
-        padding: 2em;
+    .register-left, .register-right {
+        padding: 2rem;
     }
 
-    .register-title {
-        font-size: 28px;
+    .register-hero-title {
+        font-size: 3.5rem;
+    }
+
+    .register-card {
+        padding: 2rem;
     }
 }

@@ -49,7 +49,11 @@ export const login = async (req, res, next) => {
 // Functie voor het uitloggen
 export const logout = (req, res) => {
   // Verwijder de "cookie" van de gebruiker. Hierdoor ben je niet meer ingelogd
-  res.clearCookie('token');
+  res.clearCookie('token', {
+    path: '/',
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+    secure: process.env.NODE_ENV === 'production'
+  });
   // Stuur een berichtje dat het uitloggen is gelukt
   res.json({ message: 'Uitgelogd.' });
 };

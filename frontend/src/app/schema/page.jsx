@@ -20,7 +20,7 @@ export default function Schema() {
   const pageRef = useRef(null)
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/rounds`, { credentials: 'include' })
+    fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/rounds`, { credentials: 'include' })
       .then((r) => r.json())
       .then((d) => {
         const rounds = Array.isArray(d) ? d : []

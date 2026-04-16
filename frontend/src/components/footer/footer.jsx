@@ -2,7 +2,7 @@
 
 import React from 'react'
 import ContentFooter from './contentfooter.jsx'
-import './footer.css'
+import './Footer.css'
 
 export default function Footer() {
   return (

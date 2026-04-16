@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap");
+
+.intro, .steps {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--bg-main); /* Achtergrond overnemen uit theme */
+}
+.cards {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150vw;
+  height: 600px;
+  will-change: transform;
+}
+.card {
+  position: absolute;
+  width: 500px;
+  height: 550px;
+  top: 50%;
+  left: 50%;
+  transform-origin: center center;
+  margin-left: -250px;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+  border-radius: var(--br-lg);
+  will-change: transform;
+  overflow: hidden;
+}
+.card-img {
+  flex: 1;
+  background: rgba(255, 140, 66, 0.05);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+.card-img h2 {
+  text-align: center;
+  color: var(--primary); /* Gekleurde titels */
+  font-size: 2.2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+.card-content {
+  width: 100%;
+  padding: 1.5rem 2rem 2.5rem 2rem;
+}
+.card-content p {
+  text-align: left;
+  font-size: 1.15rem;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--text-main); /* Zorgen voor correcte kleur voor light-theme */
+}
+.step-counter {
+  position: absolute;
+  top: 120px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 2em;
+  z-index: 10;
+}
+.counter-title,
+.count {
+  position: relative;
+  width: 1200px;
+  height: 100px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  overflow: hidden;
+}
+.count {
+  top: -10px;
+}
+.count-container {
+  position: relative;
+  transform: translateY(100px);
+  will-change: transform;
+}
+.step-counter h1 {
+  width: 100%;
+  position: relative;
+  color: var(--text-main);
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 80px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  will-change: transform;
+}
+.empty {
+  opacity: 0;
+}
+@media (max-width: 900px) {
+  .counter-title {
+    height: 30px;
+  }
+  .counter-title h1 {
+    font-size: 30px;
+  }
+  .count {
+    top: 0px;
+    left: -10px;
+  }
+  .cards {
+    top: 27.5%;
+  }
+  .card {
+    width: 375px;
+    height: 500px;
+  }
+}

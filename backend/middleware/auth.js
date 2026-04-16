@@ -1,79 +1,78 @@
-// Dit is nodig om de login-sleutel (token) te controleren
 import jwt from "jsonwebtoken";
-// Verbind met de database
 import pool from "../config/db.js";
 
-// Dit blokkeert mensen als ze niet zijn ingelogd
+// Een filter (middleware) die ervoor zorgt dat bepaalde pagina's/gegevens alleen te zien zijn als je ingelogd bent
 export const protectroute = async (req, res, next) => {
   try {
-    // Haal de token uit de cookies
+    // Zoek het 'inlogbewijsje' (de token in de cookie) die door de browser is teruggestuurd
     const token = req.cookies.token;
-    // Geen token? Dan mag je niet verder.
     if (!token) {
-      return res.status(401).json({ message: "Niet geautoriseerd, je bent niet ingelogd" });
+      // Als er geen bewijs is, blokkeer de toegang dan direct met een '401 Niet geautoriseerd' fout
+      return res.status(401).json({ message: "Niet ingelogd, geen token gevonden." });
     }
 
-    // Controleer of de token klopt met ons geheime wachtwoord
+    // Controleer of de token echt van ons is en niet namaak/verlopen, door het geheime wachtwoord (JWT_SECRET) te gebruiken
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     
-    // Zoek de gebruiker op in de database en kijk of hij actief is
+    // Check in de database of deze gebruiker nog bestaat en op actief staat (bijv. niet weggestuurd is)
     const user = await pool.query(
       "SELECT id, name, email, role FROM users WHERE id = $1 AND is_active = TRUE",
       [decoded.id]
     );
 
-    // Bestaat de gebruiker niet of is het account op inactief gezet? Blokkeer.
+    // Als de speler niet gevonden is (of intussen is gedeactiveerd), weiger de toegang
     if (user.rows.length === 0) {
-      return res.status(401).json({ message: "Niet geautoriseerd, account niet gevonden of inactief" });
+      return res.status(401).json({ message: "Niet geautoriseerd: Gebruiker niet gevonden of niet actief." });
     }
 
-    // Bewaar de gebruikerinformatie voor de volgende stap
+    // Geef de gegevens in de backend mee ('req.user') zodat de rest van de website dit verderop kan gebruiken
     req.user = user.rows[0];
     
-    // Ga verder naar de pagina die ze wilden bezoeken
+    // Alles is goed gekeurd, ga verder naar de volgende stap ('next()')
     next();
   } catch (error) {
-    // Fout bij de token? Stuur ze weg.
-    return res.status(401).json({ message: "Niet geautoriseerd, sleutel (token) werkt niet meer" });
+    // Als de token fout of vervalst is, kom je in de catch terecht. Toegang geweigerd.
+    return res.status(401).json({ message: "Niet geautoriseerd, token controle faalde." });
   }
 };
 
-// Controleert stilletjes of iemand ingelogd is zonder ze direct te blokkeren
+// Een wat makkelijker filter: Het maakt hierbij niet uit of je weigert als je niet bent ingelogd, 
+// maar áls je een token hebt stopt hij de gegevens in req.user, is deze leeg? Prima, dan blijf je bezoeker ('null'). 
 export const checkUser = async (req, res, next) => {
   try {
-    // Haal de token op
     const token = req.cookies.token;
-    
-    // Geen token? Registreer dat er geen gebruiker is en ga verder
-    if (!token) { req.user = null; return next(); }
+    if (!token) { req.user = null; return next(); } // Niks aan de hand, ga verder als onbekende (null)
 
-    // Pak de token uit
+    // Probeer de token (cookie) te ontcijferen
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     
-    // Zoek de persoon in de database
+    // Zoek hem op in de database
     const user = await pool.query(
       "SELECT id, name, email, role FROM users WHERE id = $1",
       [decoded.id]
     );
 
-    // Sla de persoon op als we hem gevonden hebben, anders niet
+    // Vul req.user als de db iets vond, vul in met niks (null) als hij leeg is
     req.user = user.rows.length > 0 ? user.rows[0] : null;
     next();
   } catch (error) {
-    // Fout in de token, negeer het en ga door als anonieme gebruiker
+    // Foute inlog cookie? Dan ben je gewoon niet ingelogd ('null') en loop je de code weer verder uit ('next()')
     req.user = null;
     next();
   }
 };
 
-// Zorgt ervoor dat alleen admins (bazen) hier mogen komen
+// Extra strenge beveiliging: Alleen de "admin" (de baas / toernooileiding) mag hier langs!
 export const adminOnly = (req, res, next) => {
-  // Ben je niet ingelogd of ben je geen 'admin'? Dan word je tegengehouden.
+  // Controleer of er niemand is ingelogd, of dat de ingelogde NIET de rol 'admin' heeft
   if (!req.user || req.user.role !== 'admin') {
-    // Laat de server weten dat iemand stiekem op een admin pagina probeerde te komen
-    console.warn(`Admin toegang geweigerd voor gebruiker ${req.user?.id || 'onbekend'} op ${req.path}`);
-    return res.status(403).json({ message: "Alleen managers (admins) mogen hier komen." });
+    // Noteer in het interne logboek ('server terminal') dat er een stiekeme poging werd gedaan door iemand
+    console.warn(`Admin toegang geweigerd voor user ${req.user?.id || 'onbekend'} op ${req.path}`);
+    
+    // Geef een harde afwijzing op het beeldscherm ('403 Verboden') 
+    return res.status(403).json({ message: "Alleen admins (toernooileiding) hebben toegang." });
   }
-  // Als je wel admin bent, mag je door.
+  
+  // Is het wél de baas? Laat hem dan door!
   next();
 };

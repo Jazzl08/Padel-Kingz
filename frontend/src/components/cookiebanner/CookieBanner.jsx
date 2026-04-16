@@ -8,12 +8,16 @@ import './cookiebanner.css'
 export default function CookieBanner() {
   const [showBanner, setShowBanner] = useState(false)
 
+  const loadTrackingScripts = () => {
+    // Voorbeeld: console.log('Analytics inladen...')
+  }
+
   useEffect(() => {
-    // Check of cookie is opgeslagen
+    // Kijk in localStorage of er al bewuste toestemming (accept of reject) is gegeven
     const consent = localStorage.getItem('pk_cookie_consent')
     if (!consent) {
-      setShowBanner(true)
-      // Wacht even met animatie
+      setTimeout(() => setShowBanner(true), 0)
+      // Animatie start na een kleine vertraging
       setTimeout(() => {
         gsap.fromTo('.aw-cookie-banner', 
           { y: 100, opacity: 0 }, 
@@ -21,14 +25,10 @@ export default function CookieBanner() {
         )
       }, 1000)
     } else if (consent === 'accepted') {
-      // Optionele tracking laden
+      // Hier kun je in de toekomst je Google Analytics / Facebook Pixel inladen!
       loadTrackingScripts()
     }
   }, [])
-
-  const loadTrackingScripts = () => {
-    // Laad analytics script
-  }
 
   const handleAccept = () => {
     localStorage.setItem('pk_cookie_consent', 'accepted')
@@ -37,7 +37,7 @@ export default function CookieBanner() {
   }
 
   const handleReject = () => {
-    // Alleen basis cookies
+    // Alleen functionele/strikt noodzakelijke cookies gebruiken. Geen tracking laden.
     localStorage.setItem('pk_cookie_consent', 'rejected')
     closeBanner()
   }
@@ -54,7 +54,7 @@ export default function CookieBanner() {
   return (
     <div className="aw-cookie-banner">
       <div className="aw-cookie-content">
-        <h3 className="aw-cookie-title">Zullen we cookies gebruiken?</h3>
+        <h3 className="aw-cookie-title">🍪 Zullen we cookies gebruiken?</h3>
         <p className="aw-cookie-text">
           Wij gebruiken cookies om jouw ervaring te verbeteren, de website te beveiligen en 
           anonieme statistieken te verzamelen. Functionele cookies (voor o.a. inloggen) plaatsen we altijd.

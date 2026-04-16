@@ -6,7 +6,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import './navbar.css'
 import gsap from 'gsap'
 import { CustomEase } from 'gsap/CustomEase'
-import TransitionLink from '../TransitionLink'
+import TransitionLink from '../TransitionLink' // Import transition link
 import { animatePageOut } from '../../utils/animations'
 
 export const Navbar = () => {
@@ -19,7 +19,7 @@ export const Navbar = () => {
   const handleMenuNav = (e, href) => {
     e.preventDefault();
     if (pathname === href) {
-      document.querySelector('.menu-toggle')?.click();
+      document.querySelector('.menu-toggle')?.click(); // Just close if on same page
       return;
     }
 
@@ -28,8 +28,11 @@ export const Navbar = () => {
     const links = document.querySelectorAll('.link1, .link');
     const socialLinks = document.querySelectorAll('.socials p');
 
+    // Signal to animations.js NOT to run the 4-banner intro.
     sessionStorage.setItem('skipBannerIn', 'true');
 
+    // Manually trigger the close animation exactly like the menu does, 
+    // but navigate only when the animation completes!
     menuToggle.classList.remove('opened');
     menuToggle.classList.add('closed');
 
@@ -50,6 +53,9 @@ export const Navbar = () => {
     });
   };
 
+  const [prevPathname, setPrevPathname] = useState(pathname)
+
+  // Haal auth status op
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/me`, {
       credentials: 'include',
@@ -70,9 +76,11 @@ export const Navbar = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
 
-  useEffect(() => {
+  // Sluit dropdown bij route-wissel op de correcte React manier
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname)
     setDropdownOpen(false)
-  }, [pathname])
+  }
 
   useEffect(() => {
     gsap.registerPlugin(CustomEase)
@@ -163,8 +171,10 @@ export const Navbar = () => {
     }
 
     if (document.body.classList.contains('menu-open')) {
+      // Het hamburgermenu staat al open! We gebruiken de menu sluit-transitie in plaats van het zwarte gordijn:
       handleMenuNav(e, href);
     } else {
+      // Menu is dicht, gebruik het standaard page-transition zwarte gordijn
       animatePageOut(href, router);
     }
   };
@@ -179,7 +189,7 @@ export const Navbar = () => {
 
   return (
     <div className="navbar-wrapper">
-      <div className="logo"><a href="/" onClick={(e) => handleSmartNav(e, '/')}>Padel Kingz</a></div>
+      <div className="logo"><Link href="/" onClick={(e) => handleSmartNav(e, '/')}>Padel Kingz</Link></div>
 
       {/* Dynamische account link */}
       <div className="account-link" ref={dropdownRef}>
@@ -194,21 +204,21 @@ export const Navbar = () => {
             </button>
             {dropdownOpen && (
               <div className="account-dropdown-menu">
-                <a 
+                <Link 
                   href="/dashboard" 
                   className="account-dropdown-item" 
                   onClick={(e) => handleSmartNav(e, '/dashboard')}
                 >
                   Account
-                </a>
+                </Link>
                 {authUser.role === 'admin' && (
-                  <a 
+                  <Link 
                     href="/admin" 
                     className="account-dropdown-item account-dropdown-admin" 
                     onClick={(e) => handleSmartNav(e, '/admin')}
                   >
                     Admin
-                  </a>
+                  </Link>
                 )}
                 <button onClick={handleLogout} className="account-dropdown-item account-dropdown-logout">
                   Uitloggen
@@ -217,7 +227,7 @@ export const Navbar = () => {
             )}
           </div>
         ) : (
-          <a href="/login" onClick={(e) => handleSmartNav(e, '/login')} className="transition-link">Account</a>
+          <Link href="/login" onClick={(e) => handleSmartNav(e, '/login')} className="transition-link">Account</Link>
         )}
       </div>
 
@@ -233,14 +243,14 @@ export const Navbar = () => {
 
       <div className="menu">
         <div className="col col-1">
-          <div className="menu-logo"><a href="/" onClick={(e) => handleSmartNav(e, '/')}>Padel Kingz</a></div>
+          <div className="menu-logo"><Link href="/" onClick={(e) => handleSmartNav(e, '/')}>Padel Kingz</Link></div>
           <div className="links">
-            <div className="link1"><a href="/" onClick={(e) => handleMenuNav(e, '/')}>Home</a></div>
-            <div className="link1"><a href="/leaderboard" onClick={(e) => handleMenuNav(e, '/leaderboard')}>Ranglijst</a></div>
-            <div className="link"><a href="/schema" onClick={(e) => handleMenuNav(e, '/schema')}>Schema</a></div>
-            <div className="link"><a href="/finale" onClick={(e) => handleMenuNav(e, '/finale')}>Finale</a></div>
+            <div className="link1"><Link href="/" onClick={(e) => handleMenuNav(e, '/')}>Home</Link></div>
+            <div className="link1"><Link href="/leaderboard" onClick={(e) => handleMenuNav(e, '/leaderboard')}>Ranglijst</Link></div>
+            <div className="link"><Link href="/schema" onClick={(e) => handleMenuNav(e, '/schema')}>Schema</Link></div>
+            <div className="link"><Link href="/finale" onClick={(e) => handleMenuNav(e, '/finale')}>Finale</Link></div>
             {authUser && (
-              <div className="link"><a href="/dashboard" onClick={(e) => handleMenuNav(e, '/dashboard')}>Dashboard</a></div>
+              <div className="link"><Link href="/dashboard" onClick={(e) => handleMenuNav(e, '/dashboard')}>Dashboard</Link></div>
             )}
           </div>
           <div className="video-wrapper">

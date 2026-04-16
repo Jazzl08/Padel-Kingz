@@ -1,0 +1,248 @@
+.db-page {
+    padding: 120px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+.db-loading {
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    color: var(--primary);
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+
+.db-hero {
+    margin-bottom: 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.db-hero-sub {
+    color: var(--primary);
+    letter-spacing: 0.1em;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.db-hero-title {
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+}
+
+.db-hero-desc {
+    color: var(--text-sub);
+    font-size: 1rem;
+    margin-top: 1.5rem;
+    font-weight: 500;
+    max-width: 500px;
+    line-height: 1.6;
+}
+
+.db-hero-badge {
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    padding: 1.5rem 2.5rem;
+    border-radius: var(--br-lg);
+    text-align: center;
+}
+
+.db-level-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-sub);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.db-level-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-top: 0.5rem;
+    display: block;
+}
+
+.db-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 5rem;
+}
+
+.db-stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--br-lg);
+    padding: 2.5rem 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.db-stat-card--accent {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.db-stat-card--accent .db-stat-num,
+.db-stat-card--accent .db-stat-label {
+    color: white;
+}
+
+.db-stat-num {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1;
+}
+
+.db-stat-label {
+    font-size: 0.8rem;
+    color: var(--text-sub);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.db-section-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+}
+
+.db-empty {
+    background: var(--bg-card);
+    border: 1px dashed var(--glass-border);
+    border-radius: var(--br-lg);
+    padding: 4rem;
+    text-align: center;
+    color: var(--text-sub);
+}
+
+.db-matches-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.db-match-card {
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--br-lg);
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    align-items: center;
+    gap: 2.5rem;
+    transition: transform 0.2s;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.db-match-card:hover {
+    transform: translateY(-2px);
+}
+
+.db-match-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.db-match-round {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-sub);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.db-match-court {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.db-match-teams {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.db-team {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.db-team-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-sub);
+}
+
+.db-team-names {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.db-team--mine .db-team-names {
+    color: var(--primary);
+}
+
+.db-vs {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: var(--text-sub);
+    opacity: 0.5;
+}
+
+.db-match-score {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: 2px;
+}
+
+.db-badge {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 50px;
+}
+
+.badge-win {
+    background: rgba(52, 199, 89, 0.1);
+    color: var(--success);
+}
+
+.badge-loss {
+    background: var(--error-bg);
+    color: var(--error);
+}
+
+.badge-pending {
+    background: var(--input-bg);
+    color: var(--text-sub);
+}

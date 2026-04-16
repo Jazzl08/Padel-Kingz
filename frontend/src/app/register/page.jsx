@@ -1,114 +1,166 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import TransitionLink from '@/components/TransitionLink'
+import gsap from 'gsap'
 import './register.css'
 
+const SKILL_LEVELS = ['Beginner', 'Intermediate', 'Advanced', 'Professional']
+
 export default function Register() {
-    const [form, setForm] = useState({
-        name: "",
-        email: "",
-        password: "",
-    })
+  const [form, setForm] = useState({ name: '', email: '', password: '', age: '', skill_level: '', botField: '' })
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+  const router = useRouter()
 
-    const [error, setError] = useState("");
-    const router = useRouter();
+  const pageRef = useRef(null)
+  const contentRef = useRef(null)
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/register`, {
-                method: "POST",
-                credentials: "include",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(form)
-            });
-            const data = await res.json();
-            if (data.token) {
-                router.push("/");
-            } else {
-                setError("Registratie mislukt, probeer het opnieuw");
-            }
-        } catch (err) {
-            setError("Registratie mislukt, probeer het opnieuw");
-        }
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.to(pageRef.current, { opacity: 1, duration: 0.5, ease: 'power2.out' })
+
+      const elements = Array.from(contentRef.current.children)
+      gsap.fromTo(elements,
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, stagger: 0.1, duration: 1, ease: 'power3.out', delay: 0.2 }
+      )
+    }, pageRef)
+    return () => ctx.revert()
+  }, [])
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    
+    // Blokkeer spambots
+    if (form.botField) {
+      setError('Anti-spam check gefaald. Ververs de pagina en probeer het opnieuw.')
+      return
     }
 
-    return (
-        <div className="register-container">
-            {/* Linkerkant */}
-            <div className="register-left">
-                <div className="left-content">
-                    <span className="register-subtitle">Sign up</span>
-                    <h1 className="register-hero-title">
-                        CREATE<br />
-                        ACCOUNT
-                    </h1>
-                    <p className="register-hero-desc">
-                        Maak een account aan om te beginnen met je cursussen en<br />
-                        embody the art of being human.
-                    </p>
-                </div>
-            </div>
+    setError('')
+    setLoading(true)
 
-            {/* Rechterkant */}
-            <div className="register-right">
-                <div className="register-card">
-                    <div className="card-content">
-                        <h2 className="card-title">REGISTREREN</h2>
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/auth/register`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name, email: form.email, password: form.password,
+          ...(form.age && { age: parseInt(form.age) }),
+          ...(form.skill_level && { skill_level: form.skill_level }),
+        }),
+      })
+      const data = await res.json()
 
-                        <form onSubmit={handleSubmit} className="register-form">
-                            {error && <div className="error-message">{error}</div>}
+      if (!res.ok) {
+        setError(data.error || 'Registratie mislukt, probeer het opnieuw')
+        gsap.fromTo('.aw-glass-card', { x: -8 }, { x: 8, yoyo: true, repeat: 3, duration: 0.1, clearProps: 'x' })
+        return
+      }
 
-                            <div className="form-group">
-                                <label className="form-label">Naam</label>
-                                <input
-                                    type="text"
-                                    className="form-input"
-                                    value={form.name}
-                                    onChange={(e) => setForm({ ...form, name: e.target.value })}
-                                    required
-                                />
-                            </div>
+      if (data.token) {
+        gsap.to(pageRef.current, {
+          opacity: 0, y: -20, duration: 0.4,
+          onComplete: () => router.push('/')
+        })
+      } else {
+        setError('Registratie mislukt, probeer het opnieuw')
+      }
+    } catch (err) {
+      setError('Kan geen verbinding maken met de server')
+    } finally {
+      setLoading(false)
+    }
+  }
 
-                            <div className="form-group">
-                                <label className="form-label">Email</label>
-                                <input
-                                    type="email"
-                                    className="form-input"
-                                    value={form.email}
-                                    onChange={(e) => setForm({ ...form, email: e.target.value })}
-                                    required
-                                />
-                            </div>
-
-                            <div className="form-group">
-                                <label className="form-label">Wachtwoord</label>
-                                <input
-                                    type="password"
-                                    className="form-input"
-                                    value={form.password}
-                                    onChange={(e) => setForm({ ...form, password: e.target.value })}
-                                    required
-                                />
-                            </div>
-
-                            <button type="submit" className="btn-submit1">REGISTREER</button>
-                        </form>
-                    </div>
-
-                    <div className="register-footer">
-                        <div className="footer-line"></div>
-                        <div className="footer-content">
-                            <span>AL EEN ACCOUNT?</span>
-                            <Link href="/login" className="signup-link">LOG IN</Link>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  return (
+    <main className="aw-page register-container" ref={pageRef}>
+      <div className="aw-glass-card register-card" ref={contentRef}>
+        
+        <div className="register-header">
+          <span className="register-subtitle">NIEUWE SPELER</span>
+          <h1 className="register-title">REGISTREREN</h1>
+          <p className="register-desc">
+            Schrijf je in voor het King of the Court toernooi en claim je plek!
+          </p>
         </div>
-    )
+
+        <form onSubmit={handleSubmit} className="register-form">
+          {error && <div className="form-error">{error}</div>}
+
+          <div className="input-group">
+            <label>VOLLEDIGE NAAM</label>
+            <input type="text" name="name" value={form.name} onChange={handleChange} required
+              minLength="2" maxLength="50"
+              pattern="^[a-zA-ZÀ-ÿ\s\-']+$"
+              title="Alleen letters, spaties, koppeltekens en apostrofs"
+              placeholder="John Doe"
+              className="input-field"
+            />
+          </div>
+          {/* Verborgen honingpot-veld voor bot spam-bots */}
+          <div style={{ display: 'none' }}>
+            <label>Laat dit veld leeg als je een mens bent</label>
+            <input type="text" name="botField" tabIndex="-1" autoComplete="off" value={form.botField} onChange={handleChange} />
+          </div>
+          <div className="input-group">
+            <label>EMAILADRES</label>
+            <input type="email" name="email" value={form.email} onChange={handleChange} required
+              maxLength="100"
+              placeholder="jouw@email.nl"
+              className="input-field"
+            />
+          </div>
+
+          <div className="input-group">
+             <label>WACHTWOORD</label>
+             <input type="password" name="password" value={form.password} onChange={handleChange} required
+              minLength="8" maxLength="100"
+              placeholder="********"
+              title="Minimaal 8 tekens, 1 hoofdletter, 1 kleine letter, 1 cijfer en 1 speciaal teken"
+              className="input-field"
+              style={{ letterSpacing: '0.1em' }}
+             />
+          </div>
+
+          <div className="row-group">
+            <div className="input-group col-1">
+              <label>LEEFTIJD</label>
+              <input type="number" name="age" value={form.age} onChange={handleChange} min="10" max="100"
+                placeholder="25"
+                className="input-field"
+              />
+            </div>
+
+            <div className="input-group col-2">
+              <label>NIVEAU</label>
+              <select name="skill_level" value={form.skill_level} onChange={handleChange}
+                className="input-field select-field"
+              >
+                <option value="">Kies niveau</option>
+                {(typeof SKILL_LEVELS !== 'undefined' ? SKILL_LEVELS : []).map((level) => (<option key={level} value={level}>{level}</option>))}
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" disabled={loading} className="aw-btn" style={{ marginTop: '1.5rem' }}>
+            {loading ? 'LADEN...' : 'REGISTREREN'}
+          </button>
+        </form>
+
+        <div className="auth-redirect">
+          Al een account? <TransitionLink href="/login" label="Log In" className="auth-redirect-link" />
+        </div>
+
+      </div>
+    </main>
+  )
 }

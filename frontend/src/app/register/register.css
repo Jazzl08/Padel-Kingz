@@ -1,196 +1,116 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:ital,wght@0,300;0,400;0,600;0,800;1,400&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Manrope', sans-serif;
-}
-
 .register-container {
-    display: flex;
-    min-height: 100vh;
-    background-color: #FFA54F; /* Licht oranje achtergrond */
-}
-
-/* --- LINKERKANT --- */
-.register-left {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    padding: 10%;
-}
-
-.left-content {
-    max-width: 500px;
-}
-
-.register-subtitle {
-    font-size: 1.5rem;
-    font-weight: 400;
-    font-style: italic;
-    color: #FFF3E3;
-    display: block;
-    margin-bottom: 0.5rem;
-}
-
-.register-hero-title {
-    font-size: 5.5rem;
-    font-weight: 800;
-    color: #FFF3E3; 
-    text-transform: uppercase;
-    line-height: 0.9;
-    letter-spacing: -2px;
-    margin-bottom: 1.5rem;
-}
-
-.register-hero-desc {
-    font-size: 0.95rem;
-    color: #FFF3E3;
-    line-height: 1.4;
-    font-weight: 300;
-}
-
-/* --- RECHTERKANT --- */
-.register-right {
-    flex: 1;
-    display: flex;
-    padding: 2rem;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  padding-block: 80px;
 }
 
 .register-card {
-    background-color: #F8EFE3; 
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 10%;
+  width: 100%;
+  max-width: 440px;
+  padding: 3rem 2.5rem;
 }
 
-.card-content {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.register-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
 }
 
-.card-title {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: #000000a6; 
-    letter-spacing: -1px;
-    margin-bottom: 3rem;
+.register-subtitle {
+  color: var(--primary);
+  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.register-title {
+  font-size: 2rem;
+  margin: 0.5rem 0;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+}
+
+.register-desc {
+  color: var(--text-sub);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-top: 1rem;
+  font-weight: 500;
 }
 
 .register-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+.form-error {
+  background: var(--error-bg);
+  color: var(--error);
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  text-align: center;
+  font-weight: 600;
 }
 
-.form-label {
-    font-size: 0.85rem;
-    font-weight: 800;
-    color: rgb(0 0 0 / 40%);
-
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-.form-input {
-    background: transparent;
-    border: 1px solid #D1C9BE;
-    padding: 0.8rem;
-    font-size: 1rem;
-    color: #2D3325;
-    outline: none;
-    transition: border-color 0.3s ease;
+.input-group label {
+  font-size: 0.85rem;
+  color: var(--text-sub);
+  font-weight: 600;
 }
 
-.form-input:focus {
-    border-color: #FFA54F;
+.input-field {
+  background: var(--input-bg);
+  border: 1px solid transparent;
+  padding: 1rem;
+  border-radius: 8px;
+  color: var(--input-text);
+  outline: none;
+  transition: border-color 0.2s;
+  font-size: 1rem;
+  width: 100%;
 }
 
-.btn-submit1 {
-    background-color: #C3C775; /* Olijfgele knop */
-    color: #2D3325;
-    border: none;
-    padding: 0.8rem 1.5rem;
-    font-size: 0.85rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    cursor: pointer;
-    width: max-content;
-    margin-top: 1rem;
-    transition: opacity 0.3s;
+.input-field:focus {
+  border-color: var(--primary);
 }
 
-.btn-submit1:hover {
-    opacity: 0.8;
+.select-field {
+  cursor: pointer;
+  appearance: none;
 }
 
-.error-message {
-    background: #ffdbdb;
-    border: 1px solid #ff4a4a;
-    color: #d10000;
-    padding: 0.8rem;
-    font-size: 0.9rem;
+.row-group {
+  display: flex;
+  gap: 1rem;
 }
 
-/* --- FOOTER IN KAART --- */
-.register-footer {
-    margin-top: 3rem;
+.row-group .col-1 {
+  flex: 1;
 }
 
-.footer-line {
-    height: 1px;
-    background-color: #2D3325;
-    width: 100%;
-    margin-bottom: 1rem;
-    opacity: 0.3;
+.row-group .col-2 {
+  flex: 2;
 }
 
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #2D3325;
+.auth-redirect {
+  text-align: center;
+  margin-top: 2.5rem;
+  font-size: 0.9rem;
+  color: var(--text-sub);
 }
 
-.signup-link {
-    color: #2D3325;
-    text-decoration: none;
-    font-weight: 800;
-    display: flex;
-    align-items: center;
-    gap: 0.2rem;
-}
-
-.signup-link:hover {
-    text-decoration: underline;
-}
-
-/* --- RESPONSIVE / MOBIEL --- */
-@media (max-width: 900px) {
-    .register-container {
-        flex-direction: column;
-    }
-
-    .register-left, .register-right {
-        padding: 2rem;
-    }
-
-    .register-hero-title {
-        font-size: 3.5rem;
-    }
-
-    .register-card {
-        padding: 2rem;
-    }
+.auth-redirect-link {
+  color: var(--primary);
+  font-weight: 700;
+  margin-left: 0.5rem;
 }

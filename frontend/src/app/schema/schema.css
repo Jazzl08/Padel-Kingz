@@ -1,0 +1,228 @@
+.sc-page {
+  padding: 120px 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+.sc-loading,
+.sc-match-loading {
+  height: 60vh;
+  display: grid;
+  place-items: center;
+  color: var(--primary);
+  font-weight: 800;
+}
+.sc-header {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.sc-back,
+.sc-nav-link {
+  color: var(--text-sub);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: color 0.2s;
+}
+.sc-back:hover,
+.sc-nav-link:hover {
+  color: var(--primary);
+}
+.sc-logo {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text-main);
+  flex-grow: 1;
+  text-align: center;
+  letter-spacing: 0.2em;
+  opacity: 0.2;
+}
+
+.sc-hero {
+  margin-bottom: 4rem;
+}
+.sc-hero-sub {
+  color: var(--primary);
+  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 1rem;
+}
+.sc-hero-title {
+  font-size: clamp(3rem, 6vw, 6rem);
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+}
+.sc-hero-desc {
+  color: var(--text-sub);
+  font-size: 1.1rem;
+  margin-top: 1.5rem;
+  font-weight: 500;
+}
+
+.sc-rounds {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+.sc-round-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  padding: 1rem 1.5rem;
+  border-radius: var(--br-base);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 140px;
+}
+.sc-round-btn:hover {
+  border-color: var(--primary);
+}
+.sc-round-btn--active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+.sc-round-btn span:first-child {
+  font-size: 1rem;
+  font-weight: 800;
+  color: inherit;
+  transition: color 0.2s;
+}
+.sc-round-btn--active span:first-child {
+  color: white;
+}
+.sc-status {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-sub);
+}
+.sc-round-btn--active .sc-status {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.sc-empty {
+  background: var(--bg-card);
+  border: 1px dashed var(--glass-border);
+  padding: 4rem;
+  text-align: center;
+  color: var(--text-sub);
+  border-radius: var(--br-lg);
+}
+
+.sc-courts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 1.5rem;
+}
+.sc-court-card {
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--br-lg);
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+}
+.sc-court-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding-bottom: 1rem;
+}
+.sc-court-num {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+.sc-match-status {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.4rem 0.8rem;
+  border-radius: 50px;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text-main);
+}
+.status-active {
+  color: var(--primary);
+}
+.status-done {
+  color: var(--success);
+}
+.status-pending {
+  color: var(--text-sub);
+}
+
+.sc-teams {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1.5rem;
+}
+.sc-team {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.sc-team--right {
+  text-align: right;
+}
+.sc-team-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-sub);
+}
+.sc-player {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+.sc-score-block {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+}
+.sc-score {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+.sc-score-sep {
+  font-size: 1.2rem;
+  color: var(--text-sub);
+}
+.sc-vs {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text-sub);
+  opacity: 0.5;
+}
+.sc-winner {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center;
+}

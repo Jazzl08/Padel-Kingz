@@ -1,200 +1,91 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:ital,wght@0,300;0,400;0,600;0,800;1,400&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Manrope', sans-serif;
-}
-
 .login-container {
-    display: flex;
-    min-height: 100vh;
-    background: radial-gradient(circle, #FFB366 0%, #FF8C42 100%);
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  padding-block: 80px;
 }
-
-/* --- LINKERKANT --- */
-.login-left {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    padding: 10%;
-}
-
-.left-content {
-    max-width: 500px;
-}
-
-.login-subtitle {
-    font-size: 1.5rem;
-    font-weight: 400;
-    font-style: italic;
-    color: #FFF3E3;
-    display: block;
-    margin-bottom: 0.5rem;
-}
-
-.login-hero-title {
-    font-size: 5.5rem;
-    font-weight: 800;
-    color: #FFF3E3; /* Beige text kleur afgestemd op de kaart */
-    text-transform: uppercase;
-    line-height: 0.9;
-    letter-spacing: -2px;
-    margin-bottom: 1.5rem;
-}
-
-.login-hero-desc {
-    font-size: 0.95rem;
-    color: #FFF3E3;
-    line-height: 1.4;
-    font-weight: 300;
-}
-
-/* --- RECHTERKANT --- */
-.login-right {
-    flex: 1;
-    display: flex;
-    padding: 2rem;
-}
-
 .login-card {
-    background-color: #F8EFE3; /* Beige kleur van de kaart op de foto */
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 10%;
+  width: 100%;
+  max-width: 420px;
+  padding: 3rem 2.5rem;
 }
-
-.card-content {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.login-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
 }
-
-.card-title {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: #000000a6; /* Donkere olijfgroen/zwarte kleur van de foto */
-    letter-spacing: -1px;
-    margin-bottom: 3rem;
+.login-subtitle {
+  color: var(--primary);
+  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
 }
-
+.login-title {
+  font-size: 2rem;
+  margin: 0.5rem 0;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+}
+.login-desc {
+  color: var(--text-sub);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-top: 1rem;
+  font-weight: 500;
+}
 .login-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+.form-error {
+  background: var(--error-bg);
+  color: var(--error);
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  text-align: center;
+  font-weight: 600;
 }
-
-.form-label {
-    font-size: 0.85rem;
-    font-weight: 800;
-color: rgb(0 0 0 / 40%);
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
-
-.form-input {
-    background: transparent;
-    border: 1px solid #D1C9BE;
-        border-radius: 50px;
-    padding: 0.8rem;
-    font-size: 1rem;
-    color: #2D3325;
-    outline: none;
-    transition: border-color 0.3s ease;
+.input-group label {
+  font-size: 0.85rem;
+  color: var(--text-sub);
+  font-weight: 600;
 }
-
-.form-input:focus {
-    border-color: #FFA54F;
+.input-field {
+  background: var(--input-bg);
+  border: 1px solid transparent;
+  padding: 1rem;
+  border-radius: 8px;
+  color: var(--input-text);
+  outline: none;
+  transition: border-color 0.2s;
+  font-size: 1rem;
+  width: 100%;
 }
-
-.btn-submit {
-    width: 100%;
-    padding: 0.9em 1.4em;
-    background: orange;
-    color: black;
-    border: none;
-    border-radius: 50px;
-    font-size: 14px;
-    font-weight: 700;
-    font-family: 'Manrope', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
-    margin-top: 0.4em;
-    transition: opacity 0.3s;
+.input-field.password {
+  letter-spacing: 0.1em;
 }
-
-.btn-submit:hover {
-    opacity: 0.8;
+.input-field:focus {
+  border-color: var(--primary);
 }
-
-.error-message {
-    background: #ffdbdb;
-    border: 1px solid #ff4a4a;
-    color: #d10000;
-    padding: 0.8rem;
-    font-size: 0.9rem;
+.submit-btn {
+  margin-top: 1.5rem;
 }
-
-/* --- FOOTER IN KAART --- */
-.login-footer {
-    margin-top: 3rem;
+.auth-redirect {
+  text-align: center;
+  margin-top: 2.5rem;
+  font-size: 0.9rem;
+  color: var(--text-sub);
 }
-
-.footer-line {
-    height: 1px;
-    background-color: #2D3325;
-    width: 100%;
-    margin-bottom: 1rem;
-    opacity: 0.3;
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #2D3325;
-}
-
-.signup-link {
-    color: #2D3325;
-    text-decoration: none;
-    font-weight: 800;
-    display: flex;
-    align-items: center;
-    gap: 0.2rem;
-}
-
-.signup-link:hover {
-    text-decoration: underline;
-}
-
-/* --- RESPONSIVE / MOBIEL --- */
-@media (max-width: 900px) {
-    .login-container {
-        flex-direction: column;
-    }
-
-    .login-left, .login-right {
-        padding: 2rem;
-    }
-
-    .login-hero-title {
-        font-size: 3.5rem;
-    }
-
-    .login-card {
-        padding: 2rem;
-    }
+.auth-redirect-link {
+  color: var(--primary);
+  font-weight: 700;
+  margin-left: 0.5rem;
 }

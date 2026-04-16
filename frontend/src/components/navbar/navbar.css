@@ -175,6 +175,8 @@ z-index: 9999;
 }
 
 .link1 a {
+    position: relative;
+    display: inline-block;
     text-decoration: none;
     font-weight: 300;
     font-size: 48px;
@@ -196,12 +198,11 @@ z-index: 9999;
     width: 0;
     height: 2px;
     background-color: white;
-    transition: width 0.5s;
+    transition: width 0.5s ease-in-out;
 }
 
-
 .link1 a:hover::after {
-    width: 75%;
+    width: 100%;
 }
 
 .link {
@@ -211,6 +212,8 @@ z-index: 9999;
 }
 
 .link a {
+    position: relative;
+    display: inline-block;
     text-decoration: none;
     font-weight: 300;
     font-size: 48px;
@@ -232,9 +235,8 @@ z-index: 9999;
     width: 0;
     height: 2px;
     background-color: white;
-    transition: width 0.5s;
+    transition: width 0.5s ease-in-out;
 }
-
 
 .link a:hover::after {
     width: 100%;
@@ -296,6 +298,8 @@ z-index: 9999;
 
 
 .sub-col p a {
+    position: relative;
+    display: inline-block;
     text-decoration: none;
     color: rgba(150, 150, 150, 0.877);
     letter-spacing: 0;
@@ -311,23 +315,15 @@ z-index: 9999;
     content: "";
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: -2px;
     width: 0;
     height: 1px;
     background-color: white;
-    transition: width 0.5s;
+    transition: width 0.5s ease-in-out;
 }
 
-.sub-col .insta.a:hover::after {
-    width: 25%;
-}
-
-.sub-col .tikok.a:hover::after {
-    width: 15%;
-}
-
-.sub-col .facebook.a:hover::after {
-    width: 23%;
+.sub-col p a:hover::after {
+    width: 100%;
 }
 
 
@@ -440,8 +436,7 @@ z-index: 9999;
         margin-bottom: 2em;
     }
 
-    .link a,
-    .link1 a {
+    .link a {
         font-size: 32px;
         line-height: 1.2;
     }

@@ -100,7 +100,6 @@ export default function Dashboard() {
 
         {matches.length === 0 ? (
           <div className="db-empty">
-            <span className="db-empty-icon">🎾</span>
             <p>Nog geen wedstrijden ingepland.</p>
             <p className="db-empty-sub">Zodra de admin een ronde start, verschijnen jouw wedstrijden hier.</p>
           </div>

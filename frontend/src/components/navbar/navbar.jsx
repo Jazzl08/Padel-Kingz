@@ -57,7 +57,7 @@ export const Navbar = () => {
 
   // Haal auth status op
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/me`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/auth/me`, {
       credentials: 'include',
     })
       .then((r) => r.ok ? r.json() : null)
@@ -180,7 +180,7 @@ export const Navbar = () => {
   };
 
   const handleLogout = async () => {
-    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/logout`, {
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/auth/logout`, {
       method: 'POST', credentials: 'include',
     })
     setAuthUser(null)

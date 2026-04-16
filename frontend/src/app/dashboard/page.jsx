@@ -17,8 +17,8 @@ export default function Dashboard() {
     if (!user) return
 
     Promise.all([
-      fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/matches/player/${user.id}`, { credentials: 'include' }).then(r => r.json()),
-      fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/leaderboard`, { credentials: 'include' }).then(r => r.json()),
+      fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/matches/player/${user.id}`, { credentials: 'include' }).then(r => r.json()),
+      fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/leaderboard`, { credentials: 'include' }).then(r => r.json()),
     ]).then(([matchData, lbData]) => {
       setMatches(Array.isArray(matchData) ? matchData : [])
       const myStats = Array.isArray(lbData) ? lbData.find(r => r.user_id === user.id) : null

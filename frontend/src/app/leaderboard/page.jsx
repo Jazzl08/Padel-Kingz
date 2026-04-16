@@ -12,7 +12,7 @@ export default function Leaderboard() {
   const pageRef = useRef(null)
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/leaderboard`, { credentials: 'include' })
+    fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/leaderboard`, { credentials: 'include' })
       .then((r) => r.json())
       .then((d) => setData(Array.isArray(d) ? d : []))
       .finally(() => {

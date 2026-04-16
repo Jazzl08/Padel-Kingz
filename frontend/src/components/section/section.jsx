@@ -1,11 +1,9 @@
-<<<<<<< HEAD
 'use client'
 
 import React, { useEffect, useRef } from 'react'
 import TransitionLink from '../TransitionLink'
 import gsap from 'gsap'
 import './section.css'
-import Lenis from "lenis";
 
 export default function Section() {
   const containerRef = useRef(null)
@@ -49,15 +47,6 @@ export default function Section() {
       {/* Optionele visuele elementen op de achtergrond */}
       <div className="hero-glow-1"></div>
       <div className="hero-glow-2"></div>
-=======
-import React from 'react'
-import './section.css'
-
-export default function Section() {
-  return (
-    <div className='section'>
-      <h2 className='section__title'>Section Pagina</h2>
->>>>>>> b7eac43665de14111f40f95e677c4cf3b11de7dc
     </div>
   )
 }

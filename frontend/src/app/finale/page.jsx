@@ -17,7 +17,7 @@ export default function Finale() {
   useEffect(() => {
     const load = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/rounds/finalists`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/rounds/finalists`, {
           credentials: 'include',
         })
         const data = await res.json()
@@ -32,7 +32,7 @@ export default function Finale() {
         // Haal data tegelijk op
         const playerData = await Promise.all(
           data.finalists.map((id) =>
-            fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/users/${id}`, { credentials: 'include' })
+            fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/users/${id}`, { credentials: 'include' })
               .then((r) => r.json())
           )
         )

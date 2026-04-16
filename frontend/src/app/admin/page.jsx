@@ -41,9 +41,9 @@ export default function Admin() {
 
     // Haal alles tegelijk op
     Promise.all([
-      fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/users`, { credentials: 'include' }).then(r => r.json()),
-      fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/rounds`, { credentials: 'include' }).then(r => r.json()),
-      fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/users/stats`, { credentials: 'include' }).then(r => r.json()),
+      fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/users`, { credentials: 'include' }).then(r => r.json()),
+      fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/rounds`, { credentials: 'include' }).then(r => r.json()),
+      fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/users/stats`, { credentials: 'include' }).then(r => r.json()),
     ]).then(([p, r, s]) => {
       setPlayers(Array.isArray(p) ? p : [])
       setRounds(Array.isArray(r) ? r : [])

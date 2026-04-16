@@ -14,7 +14,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="nl" className={manrope.variable} suppressHydrationWarning>
+    <html lang="nl" className={manrope.variable}>
       <body className="antialiased">
         <Navbar />
         {children}

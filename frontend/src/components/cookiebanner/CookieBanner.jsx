@@ -54,7 +54,7 @@ export default function CookieBanner() {
   return (
     <div className="aw-cookie-banner">
       <div className="aw-cookie-content">
-        <h3 className="aw-cookie-title">🍪 Zullen we cookies gebruiken?</h3>
+        <h3 className="aw-cookie-title">Zullen we cookies gebruiken?</h3>
         <p className="aw-cookie-text">
           Wij gebruiken cookies om jouw ervaring te verbeteren, de website te beveiligen en 
           anonieme statistieken te verzamelen. Functionele cookies (voor o.a. inloggen) plaatsen we altijd.
